@@ -5,15 +5,6 @@
 
 function searchValue() {
 
-    const num = +prompt('Enter a number');
-
-    if (typeof num !== 'number') {
-        throw new RangeError('num is not a number!');
-    };
-    if (Number.isNaN(num) || !Number.isSafeInteger(num) || num < 0 || num > 100 ) {
-        throw new RangeError('False value for num!');
-    };
-
     let start = 0;
     let end = 100;
     let middle;
@@ -21,16 +12,24 @@ function searchValue() {
     for(let i = 0; ; i++) {
 
         middle = Math.ceil( (start + end) / 2 );
-        const question = confirm(`Число больше либо равно ${middle}? Спойлер - ${num} )`);
-
-        if (num < start || num > end) {
-            throw new RangeError('False range sequence!');
+       
+        if (start > end) {
+            start = end;
         };
 
-        if (num === middle) {
-            return num;
+        if (middle > end) {
+            middle = end;
+        };
+
+
+        const question = confirm(`Число больше ${middle}?`);
+
+        console.log(`middle - ${middle}, start - ${start}, end - ${end}`);
+
+        if (start === middle) {
+            return start;
         } else if (question) {
-            start = middle + 1;
+            start = middle;
         } else {
             end = middle - 1;
         };
