@@ -29,7 +29,7 @@ function searchValue() {
                     return middle;
                 } else {
                     question = confirm(`Или это число ${end}?`);
-                    
+
                     if (question) {
                         alert(`Угадали! это число ${end}`);
                         return end;
@@ -45,7 +45,7 @@ function searchValue() {
             if (!question) {
                 end = middle;
             };
-        }
+        };
     };
 };
 
