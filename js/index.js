@@ -8,43 +8,30 @@
 
 function searchValue() {
 
-    let question;
     let start = 0;
     let end = 100;
     let middle;
 
-    for(let i = 0; ; i++) {
+    while (start <= end) {
 
-        if (start <= end) {
-            middle = Math.floor( (start + end) / 2 );
+        middle = Math.floor( (start + end) / 2 );
 
-            question = confirm(`Это число больше ${middle}?`);
-    
-            if (end - middle === 1) {
-
-                question = confirm(`Это число ${middle}?`);
-
-                if (question) {
-                    alert(`Угадали! это число ${middle}`);
-                    return middle;
-                } else {
-                    question = confirm(`Или это число ${end}?`);
-
-                    if (question) {
-                        alert(`Угадали! это число ${end}`);
-                        return end;
-                    } else {
-                        return 'Не получилось угадать число';
-                    };
-                };
-            }; 
-
-            if (question) {
-                start = middle;
-            }; 
-            if (!question) {
-                end = middle;
+        if (end - middle === 1) {
+            if ( confirm(`Это число ${middle}?`) ) {
+                alert(`Угадали! Это число ${middle}`);
+                return middle;
+            } else if ( confirm(`Или это число ${end}?`) ) {
+                alert(`Угадали! Это число ${end}`);
+                return end;
+            } else {
+                return 'Не получилось угадать число';
             };
+        }; 
+
+        if ( confirm(`Это число больше ${middle}?`) ) {
+            start = middle;
+        } else {
+            end = middle;
         };
     };
 };
